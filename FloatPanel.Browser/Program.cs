@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Browser;
 using FloatPanel;
+using FloatPanel.UI;
 
 internal sealed partial class Program
 {

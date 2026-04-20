@@ -4,8 +4,8 @@ using Avalonia.Data.Core;
 using Avalonia.Data.Core.Plugins;
 using System.Linq;
 using Avalonia.Markup.Xaml;
-using FloatPanel.UI.ViewModels;
 using FloatPanel.UI.Views;
+using FloatPanel.ViewModels;
 
 namespace FloatPanel.UI;
 
