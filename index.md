@@ -29,6 +29,7 @@ A flexible layout panel for Avalonia UI, inspired by MudBlazor's MudStack and Mu
 
 ## Navigation
 
-- [Introduction](docs/introduction.html) - Overview and concepts
-- [Getting Started](docs/getting-started.html) - Quick start guide
+- [Introduction](docs/introduction.md) - Overview and concepts
+- [Getting Started](docs/getting-started.md) - Quick start guide
+- [Troubleshooting](docs/troubleshooting.md) - Common issues and solutions
 - [API Reference](api/) - Detailed API documentation
