@@ -26,10 +26,10 @@ A flexible layout panel for Avalonia UI, inspired by MudBlazor's MudStack and Mu
 
 ## Installation
 
-### NuGet Package (Coming Soon)
+### NuGet Package
 
 ```bash
-dotnet add package FloatPanel.Avalonia
+dotnet add package FloatPanel
 ```
 
 ### Project Reference

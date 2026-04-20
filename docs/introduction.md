@@ -1,6 +1,6 @@
 # Introduction
 
-FloatPanel.Avalonia is a layout component library for [Avalonia UI](https://avaloniaui.net/), providing flexible panel-based layout capabilities similar to MudBlazor's MudStack and MudSpacer.
+FloatPanel.Avalonia is a layout component library for [Avalonia UI](https://avaloniaui.net/), providing flexible panel-based layout capabilities similar to MudBlazor's MudStack and MudSpacer. Available as a [NuGet package](https://www.nuget.org/packages/FloatPanel).
 
 ## Why FloatPanel?
 

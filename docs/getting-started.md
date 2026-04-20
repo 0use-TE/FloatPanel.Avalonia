@@ -4,6 +4,12 @@ This guide will help you add FloatPanel.Avalonia to your project and create your
 
 ## Installation
 
+### NuGet Package
+
+```bash
+dotnet add package FloatPanel
+```
+
 ### Project Reference
 
 ```xml
