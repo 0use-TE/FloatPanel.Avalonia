@@ -1,0 +1,86 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:FloatPanel.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="700"
+             x:Class="FloatPanel.Views.MainView"
+             x:DataType="vm:MainViewModel">
+  <Design.DataContext>
+    <vm:MainViewModel />
+  </Design.DataContext>
+
+  <ScrollViewer>
+    <StackPanel Margin="20">
+
+      <TextBlock Text="1. Horizontal (Left-Space-Right)" FontWeight="Bold" Margin="0,0,0,5"/>
+      <FloatPanel Orientation="Horizontal" Margin="0,0,0,20" Height="30">
+        <Button Content="Settings"/>
+        <Spacer/>
+        <Button Content="Apply"/>
+      </FloatPanel>
+
+      <TextBlock Text="2. Vertical (Top-Space-Bottom)" FontWeight="Bold" Margin="0,0,0,5"/>
+      <FloatPanel Orientation="Vertical" Margin="0,0,0,20" Height="80">
+        <TextBlock Text="Title"/>
+        <Spacer/>
+        <Button Content="OK"/>
+      </FloatPanel>
+
+      <TextBlock Text="3. Horizontal Wrap" FontWeight="Bold" Margin="0,0,0,5"/>
+      <FloatPanel Orientation="Horizontal" Wrap="True" Margin="0,0,0,20" Height="100">
+        <Button Content="Left1" Margin="0,0,5,5"/>
+        <Button Content="Left2" Margin="0,0,5,5"/>
+        <Spacer/>
+        <Button Content="Right1" Margin="0,0,5,5"/>
+        <Button Content="Right2" Margin="0,0,5,5"/>
+        <Button Content="Right3" Margin="0,0,5,5"/>
+      </FloatPanel>
+
+      <TextBlock Text="4. Vertical Wrap" FontWeight="Bold" Margin="0,0,0,5"/>
+      <FloatPanel Orientation="Vertical" Wrap="True" Margin="0,0,0,20" Width="200" Height="120">
+        <TextBlock Text="Top1" Margin="0,0,0,5"/>
+        <TextBlock Text="Top2" Margin="0,0,0,5"/>
+        <Spacer/>
+        <TextBlock Text="Bottom1" Margin="0,0,0,5"/>
+        <TextBlock Text="Bottom2" Margin="0,0,0,5"/>
+        <TextBlock Text="Bottom3" Margin="0,0,0,5"/>
+      </FloatPanel>
+
+      <TextBlock Text="5. Horizontal Scroll" FontWeight="Bold" Margin="0,0,0,5"/>
+      <ScrollViewer HorizontalScrollBarVisibility="Auto" Margin="0,0,0,5">
+        <FloatPanel Orientation="Horizontal" Margin="0,0,0,20">
+          <Button Content="1" Margin="0,0,5,0"/>
+          <Button Content="2" Margin="0,0,5,0"/>
+          <Button Content="3" Margin="0,0,5,0"/>
+          <Button Content="4" Margin="0,0,5,0"/>
+          <Button Content="5" Margin="0,0,5,0"/>
+          <Spacer/>
+          <Button Content="6" Margin="0,0,5,0"/>
+          <Button Content="7" Margin="0,0,5,0"/>
+          <Button Content="8" Margin="0,0,5,0"/>
+          <Button Content="9" Margin="0,0,5,0"/>
+          <Button Content="10" Margin="0,0,5,0"/>
+        </FloatPanel>
+      </ScrollViewer>
+
+      <TextBlock Text="6. Vertical Scroll" FontWeight="Bold" Margin="0,0,0,5"/>
+      <ScrollViewer VerticalScrollBarVisibility="Auto" Height="150" Margin="0,0,0,20">
+        <FloatPanel Orientation="Vertical" Margin="0,0,0,20">
+          <Button Content="1" Margin="0,0,0,5"/>
+          <Button Content="2" Margin="0,0,0,5"/>
+          <Button Content="3" Margin="0,0,0,5"/>
+          <Button Content="4" Margin="0,0,0,5"/>
+          <Button Content="5" Margin="0,0,0,5"/>
+          <Spacer/>
+          <Button Content="6" Margin="0,0,0,5"/>
+          <Button Content="7" Margin="0,0,0,5"/>
+          <Button Content="8" Margin="0,0,0,5"/>
+          <Button Content="9" Margin="0,0,0,5"/>
+          <Button Content="10" Margin="0,0,0,5"/>
+        </FloatPanel>
+      </ScrollViewer>
+
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

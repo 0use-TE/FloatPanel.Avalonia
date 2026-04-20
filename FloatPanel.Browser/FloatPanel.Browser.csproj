@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk.WebAssembly">
+  <PropertyGroup>
+    <TargetFramework>net10.0-browser</TargetFramework>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia.Browser" Version="12.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FloatPanel\FloatPanel.csproj" />
+    <ProjectReference Include="..\FloatPanelLib\FloatPanelLib.csproj" />
+  </ItemGroup>
+</Project>
