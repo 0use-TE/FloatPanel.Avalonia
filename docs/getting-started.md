@@ -10,24 +10,10 @@ This guide will help you add FloatPanel.Avalonia to your project and create your
 dotnet add package FloatPanel
 ```
 
-### Project Reference
-
-```xml
-<ProjectReference Include="path/to/FloatPanelLib/FloatPanelLib.csproj" />
-```
-
 ## Prerequisites
 
 - .NET 8.0 or later
-- Avalonia 12.0.0 or later
-
-## Adding the Namespace
-
-Before using FloatPanel in your XAML, add the namespace:
-
-```xml
-xmlns:float="clr-namespace:FloatPanel.Controls;assembly=FloatPanelControls"
-```
+- Avalonia 11.0.0 or later
 
 ## Basic Usage
 

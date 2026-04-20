@@ -4,7 +4,7 @@ FloatPanel.Avalonia is a layout component library for [Avalonia UI](https://aval
 
 ## Why FloatPanel?
 
-When building Avalonia applications, you often need to create layouts with elements spaced apart, with optional wrapping behavior. Traditional approaches using nested Panels or Grid can become complex and hard to maintain.
+When building Avalonia 11 applications, you often need to create layouts with elements spaced apart, with optional wrapping behavior. Traditional approaches using nested Panels or Grid can become complex and hard to maintain.
 
 FloatPanel simplifies this by providing:
 

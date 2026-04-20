@@ -32,19 +32,7 @@ A flexible layout panel for Avalonia UI, inspired by MudBlazor's MudStack and Mu
 dotnet add package FloatPanel
 ```
 
-### Project Reference
-
-```xml
-<ProjectReference Include="path/to/FloatPanelLib/FloatPanelLib.csproj" />
-```
-
 ## Quick Start
-
-### Add Namespace
-
-```xml
-xmlns:float="clr-namespace:FloatPanel.Controls;assembly=FloatPanelControls"
-```
 
 ### Horizontal Layout (Left-Space-Right)
 

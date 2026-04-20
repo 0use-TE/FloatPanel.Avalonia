@@ -4,29 +4,19 @@ Common issues and solutions when using FloatPanel.Avalonia.
 
 ## Installation Issues
 
-### "Cannot find namespace FloatPanel.Controls"
+### Package restore fails
 
-Make sure you have added the correct namespace in your XAML:
+Make sure you have the correct package name:
 
-```xml
-xmlns:float="clr-namespace:FloatPanel.Controls;assembly=FloatPanelControls"
+```bash
+dotnet add package FloatPanel
 ```
 
-Also verify that you have a project reference to `FloatPanelLib/FloatPanelLib.csproj`:
+### Version compatibility
 
-```xml
-<ProjectReference Include="path/to/FloatPanelLib/FloatPanelLib.csproj" />
-```
-
-### Assembly name mismatch
-
-If you see an error like "Could not find type 'FloatPanel.Controls.FloatPanel'", check your `FloatPanelLib.csproj`:
-
-```xml
-<AssemblyName>FloatPanelControls</AssemblyName>
-```
-
-The assembly name in the project must match the `assembly=` part in the xmlns declaration.
+FloatPanel requires:
+- .NET 8.0 or later
+- Avalonia 11.0.0 or later
 
 ## Layout Issues
 
