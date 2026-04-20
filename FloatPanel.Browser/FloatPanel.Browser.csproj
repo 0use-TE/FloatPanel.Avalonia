@@ -1,18 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WebAssembly">
-  <PropertyGroup>
-    <TargetFramework>net10.0-browser</TargetFramework>
-    <OutputType>Exe</OutputType>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <Nullable>enable</Nullable>
-	  <CodeTrim>true</CodeTrim>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net10.0-browser</TargetFramework>
+		<OutputType>Exe</OutputType>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<Nullable>enable</Nullable>
+		<CodeTrim>true</CodeTrim>
+		<WasmEnableThreads>false</WasmEnableThreads>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Avalonia.Browser" Version="12.0.0" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Avalonia.Browser" Version="12.0.0" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\FloatPanel\FloatPanel.csproj" />
-    <ProjectReference Include="..\FloatPanelLib\FloatPanelLib.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\FloatPanel\FloatPanel.csproj" />
+		<ProjectReference Include="..\FloatPanelLib\FloatPanelLib.csproj" />
+	</ItemGroup>
 </Project>
