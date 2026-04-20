@@ -1,6 +1,6 @@
 using Avalonia.Controls;
 
-namespace FloatPanel.Views;
+namespace FloatPanel.UI.Views;
 
 public partial class MainWindow : Window
 {

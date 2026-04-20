@@ -2,9 +2,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
-using FloatPanel.ViewModels;
+using FloatPanel.UI.ViewModels;
 
-namespace FloatPanel;
+namespace FloatPanel.UI;
 
 /// <summary>
 /// Given a view model, returns the corresponding view if possible.

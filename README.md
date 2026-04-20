@@ -101,14 +101,17 @@ FloatPanel.Avalonia/
 ├── FloatPanelLib/           # Control library
 │   ├── Controls/
 │   │   ├── FloatPanel.cs    # Main layout panel
-│   │   └── Spacer.cs         # Space-filling component
-│   └── AssemblyInfo.cs       # XML namespace definition
-├── FloatPanel/              # Shared UI project
-│   └── Views/
-│       └── MainView.axaml   # Example usage
-├── FloatPanel.Desktop/      # Desktop application
-├── FloatPanel.Browser/       # WebAssembly application
-├── docs/                    # Documentation (docfx)
+│   │   └── Spacer.cs        # Space-filling component
+│   └── AssemblyInfo.cs      # XML namespace definition
+├── FloatPanel.UI/          # Shared UI project
+│   ├── Views/
+│   │   └── MainView.axaml  # Example usage
+│   ├── ViewModels/          # View models
+│   ├── App.axaml           # Application definition
+│   └── ViewLocator.cs       # View locator
+├── FloatPanel.Desktop/     # Desktop application
+├── FloatPanel.Browser/     # WebAssembly application
+├── docs/                   # Documentation (docfx)
 └── docfx.json              # docfx configuration
 ```
 

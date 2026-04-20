@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FloatPanel\FloatPanel.csproj" />
+    <ProjectReference Include="..\FloatPanel.UI\FloatPanel.UI.csproj" />
     <ProjectReference Include="..\FloatPanelLib\FloatPanelLib.csproj" />
   </ItemGroup>
 </Project>

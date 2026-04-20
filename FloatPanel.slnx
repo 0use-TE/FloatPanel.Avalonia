@@ -1,6 +1,6 @@
 <Solution>
   <Project Path="FloatPanel.Browser/FloatPanel.Browser.csproj" />
   <Project Path="FloatPanel.Desktop/FloatPanel.Desktop.csproj" />
-  <Project Path="FloatPanel/FloatPanel.csproj" />
+  <Project Path="FloatPanel.UI/FloatPanel.UI.csproj" />
   <Project Path="FloatPanelLib/FloatPanelLib.csproj" />
 </Solution>
