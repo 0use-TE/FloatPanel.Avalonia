@@ -1,0 +1,166 @@
+### YamlMime:ManagedReference
+items:
+- uid: FloatPanel.Controls.AlignItems
+  commentId: T:FloatPanel.Controls.AlignItems
+  id: AlignItems
+  parent: FloatPanel.Controls
+  children:
+  - FloatPanel.Controls.AlignItems.Center
+  - FloatPanel.Controls.AlignItems.End
+  - FloatPanel.Controls.AlignItems.Start
+  - FloatPanel.Controls.AlignItems.Stretch
+  langs:
+  - csharp
+  - vb
+  name: AlignItems
+  nameWithType: AlignItems
+  fullName: FloatPanel.Controls.AlignItems
+  type: Enum
+  source:
+    remote:
+      path: FloatPanelLib/Controls/FloatPanel.cs
+      branch: main
+      repo: https://github.com/0use-TE/FloatPanel.Avalonia.git
+    id: AlignItems
+    path: FloatPanelLib/Controls/FloatPanel.cs
+    startLine: 18
+  assemblies:
+  - FloatPanelControls
+  namespace: FloatPanel.Controls
+  syntax:
+    content: public enum AlignItems
+    content.vb: Public Enum AlignItems
+- uid: FloatPanel.Controls.AlignItems.Start
+  commentId: F:FloatPanel.Controls.AlignItems.Start
+  id: Start
+  parent: FloatPanel.Controls.AlignItems
+  langs:
+  - csharp
+  - vb
+  name: Start
+  nameWithType: AlignItems.Start
+  fullName: FloatPanel.Controls.AlignItems.Start
+  type: Field
+  source:
+    remote:
+      path: FloatPanelLib/Controls/FloatPanel.cs
+      branch: main
+      repo: https://github.com/0use-TE/FloatPanel.Avalonia.git
+    id: Start
+    path: FloatPanelLib/Controls/FloatPanel.cs
+    startLine: 20
+  assemblies:
+  - FloatPanelControls
+  namespace: FloatPanel.Controls
+  syntax:
+    content: Start = 0
+    return:
+      type: FloatPanel.Controls.AlignItems
+- uid: FloatPanel.Controls.AlignItems.Center
+  commentId: F:FloatPanel.Controls.AlignItems.Center
+  id: Center
+  parent: FloatPanel.Controls.AlignItems
+  langs:
+  - csharp
+  - vb
+  name: Center
+  nameWithType: AlignItems.Center
+  fullName: FloatPanel.Controls.AlignItems.Center
+  type: Field
+  source:
+    remote:
+      path: FloatPanelLib/Controls/FloatPanel.cs
+      branch: main
+      repo: https://github.com/0use-TE/FloatPanel.Avalonia.git
+    id: Center
+    path: FloatPanelLib/Controls/FloatPanel.cs
+    startLine: 21
+  assemblies:
+  - FloatPanelControls
+  namespace: FloatPanel.Controls
+  syntax:
+    content: Center = 1
+    return:
+      type: FloatPanel.Controls.AlignItems
+- uid: FloatPanel.Controls.AlignItems.End
+  commentId: F:FloatPanel.Controls.AlignItems.End
+  id: End
+  parent: FloatPanel.Controls.AlignItems
+  langs:
+  - csharp
+  - vb
+  name: End
+  nameWithType: AlignItems.End
+  fullName: FloatPanel.Controls.AlignItems.End
+  type: Field
+  source:
+    remote:
+      path: FloatPanelLib/Controls/FloatPanel.cs
+      branch: main
+      repo: https://github.com/0use-TE/FloatPanel.Avalonia.git
+    id: End
+    path: FloatPanelLib/Controls/FloatPanel.cs
+    startLine: 22
+  assemblies:
+  - FloatPanelControls
+  namespace: FloatPanel.Controls
+  syntax:
+    content: End = 2
+    return:
+      type: FloatPanel.Controls.AlignItems
+- uid: FloatPanel.Controls.AlignItems.Stretch
+  commentId: F:FloatPanel.Controls.AlignItems.Stretch
+  id: Stretch
+  parent: FloatPanel.Controls.AlignItems
+  langs:
+  - csharp
+  - vb
+  name: Stretch
+  nameWithType: AlignItems.Stretch
+  fullName: FloatPanel.Controls.AlignItems.Stretch
+  type: Field
+  source:
+    remote:
+      path: FloatPanelLib/Controls/FloatPanel.cs
+      branch: main
+      repo: https://github.com/0use-TE/FloatPanel.Avalonia.git
+    id: Stretch
+    path: FloatPanelLib/Controls/FloatPanel.cs
+    startLine: 23
+  assemblies:
+  - FloatPanelControls
+  namespace: FloatPanel.Controls
+  syntax:
+    content: Stretch = 3
+    return:
+      type: FloatPanel.Controls.AlignItems
+references:
+- uid: FloatPanel.Controls
+  commentId: N:FloatPanel.Controls
+  href: FloatPanel.html
+  name: FloatPanel.Controls
+  nameWithType: FloatPanel.Controls
+  fullName: FloatPanel.Controls
+  spec.csharp:
+  - uid: FloatPanel
+    name: FloatPanel
+    href: FloatPanel.html
+  - name: .
+  - uid: FloatPanel.Controls
+    name: Controls
+    href: FloatPanel.Controls.html
+  spec.vb:
+  - uid: FloatPanel
+    name: FloatPanel
+    href: FloatPanel.html
+  - name: .
+  - uid: FloatPanel.Controls
+    name: Controls
+    href: FloatPanel.Controls.html
+- uid: FloatPanel.Controls.AlignItems
+  commentId: T:FloatPanel.Controls.AlignItems
+  parent: FloatPanel.Controls
+  href: FloatPanel.Controls.AlignItems.html
+  name: AlignItems
+  nameWithType: AlignItems
+  fullName: FloatPanel.Controls.AlignItems

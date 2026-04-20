@@ -1,0 +1,68 @@
+### YamlMime:ManagedReference
+items:
+- uid: FloatPanel.Controls
+  commentId: N:FloatPanel.Controls
+  id: FloatPanel.Controls
+  children:
+  - FloatPanel.Controls.AlignItems
+  - FloatPanel.Controls.FloatPanel
+  - FloatPanel.Controls.JustifyContent
+  - FloatPanel.Controls.Spacer
+  langs:
+  - csharp
+  - vb
+  name: FloatPanel.Controls
+  nameWithType: FloatPanel.Controls
+  fullName: FloatPanel.Controls
+  type: Namespace
+  assemblies:
+  - FloatPanelControls
+references:
+- uid: FloatPanel.Controls.JustifyContent
+  commentId: T:FloatPanel.Controls.JustifyContent
+  parent: FloatPanel.Controls
+  href: FloatPanel.Controls.JustifyContent.html
+  name: JustifyContent
+  nameWithType: JustifyContent
+  fullName: FloatPanel.Controls.JustifyContent
+- uid: FloatPanel.Controls.AlignItems
+  commentId: T:FloatPanel.Controls.AlignItems
+  parent: FloatPanel.Controls
+  href: FloatPanel.Controls.AlignItems.html
+  name: AlignItems
+  nameWithType: AlignItems
+  fullName: FloatPanel.Controls.AlignItems
+- uid: FloatPanel.Controls.FloatPanel
+  commentId: T:FloatPanel.Controls.FloatPanel
+  href: FloatPanel.Controls.FloatPanel.html
+  name: FloatPanel
+  nameWithType: FloatPanel
+  fullName: FloatPanel.Controls.FloatPanel
+- uid: FloatPanel.Controls.Spacer
+  commentId: T:FloatPanel.Controls.Spacer
+  href: FloatPanel.Controls.Spacer.html
+  name: Spacer
+  nameWithType: Spacer
+  fullName: FloatPanel.Controls.Spacer
+- uid: FloatPanel.Controls
+  commentId: N:FloatPanel.Controls
+  href: FloatPanel.html
+  name: FloatPanel.Controls
+  nameWithType: FloatPanel.Controls
+  fullName: FloatPanel.Controls
+  spec.csharp:
+  - uid: FloatPanel
+    name: FloatPanel
+    href: FloatPanel.html
+  - name: .
+  - uid: FloatPanel.Controls
+    name: Controls
+    href: FloatPanel.Controls.html
+  spec.vb:
+  - uid: FloatPanel
+    name: FloatPanel
+    href: FloatPanel.html
+  - name: .
+  - uid: FloatPanel.Controls
+    name: Controls
+    href: FloatPanel.Controls.html

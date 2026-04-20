@@ -1,24 +1,42 @@
 # FloatPanel.Avalonia
 
-A flexible layout panel for Avalonia UI, similar to MudBlazor's MudStack and MudSpacer.
+A flexible layout panel for Avalonia UI, inspired by MudBlazor's MudStack and MudSpacer components.
 
 ## Features
 
-- **FloatPanel** - A layout container with support for:
+- **FloatPanel** - A versatile layout container with support for:
   - Horizontal and vertical orientations
   - Configurable spacing between child elements
   - Justify content alignment (Start, Center, End, SpaceBetween, SpaceAround, SpaceEvenly)
   - Cross-axis alignment (Start, Center, End, Stretch)
   - Automatic wrapping when content overflows
 
-- **Spacer** - A component that occupies remaining space in a FloatPanel
+- **Spacer** - A lightweight component that occupies remaining space in a FloatPanel
 
-## Projects
+## Supported Platforms
 
-- **FloatPanelLib** - The control library (FloatPanel and Spacer)
-- **FloatPanel** - Main UI application with shared MainView
-- **FloatPanel.Desktop** - Desktop application
-- **FloatPanel.Browser** - WebAssembly application
+| Platform | Status |
+|----------|--------|
+| Windows | Supported |
+| macOS | Supported |
+| Linux | Supported |
+| WebAssembly (WASM) | Supported |
+| iOS | Supported |
+| Android | Supported |
+
+## Installation
+
+### NuGet Package (Coming Soon)
+
+```bash
+dotnet add package FloatPanel.Avalonia
+```
+
+### Project Reference
+
+```xml
+<ProjectReference Include="path/to/FloatPanelLib/FloatPanelLib.csproj" />
+```
 
 ## Quick Start
 
@@ -31,21 +49,21 @@ xmlns:float="clr-namespace:FloatPanel.Controls;assembly=FloatPanelControls"
 ### Horizontal Layout (Left-Space-Right)
 
 ```xml
-<float:FloatPanel Orientation="Horizontal">
+<FloatPanel Orientation="Horizontal">
     <Button Content="Settings"/>
-    <float:Spacer/>
+    <Spacer/>
     <Button Content="Apply"/>
-</float:FloatPanel>
+</FloatPanel>
 ```
 
 ### Vertical Layout (Top-Space-Bottom)
 
 ```xml
-<float:FloatPanel Orientation="Vertical">
+<FloatPanel Orientation="Vertical">
     <TextBlock Text="Title"/>
-    <float:Spacer/>
+    <Spacer/>
     <Button Content="OK"/>
-</float:FloatPanel>
+</FloatPanel>
 ```
 
 ## API Reference
@@ -55,7 +73,7 @@ xmlns:float="clr-namespace:FloatPanel.Controls;assembly=FloatPanelControls"
 | Property | Type | Default | Description |
 |----------|------|---------|-------------|
 | `Orientation` | `Orientation` | `Horizontal` | Layout direction |
-| `Spacing` | `double` | `8` | Space between children |
+| `Spacing` | `double` | `8` | Space between children in pixels |
 | `Justify` | `JustifyContent` | `Start` | Main axis alignment |
 | `Align` | `AlignItems` | `Stretch` | Cross axis alignment |
 | `Wrap` | `bool` | `false` | Enable wrapping |
@@ -75,6 +93,28 @@ xmlns:float="clr-namespace:FloatPanel.Controls;assembly=FloatPanelControls"
 - `Center` - Align to center of cross axis
 - `End` - Align to end of cross axis
 - `Stretch` - Stretch to fill cross axis
+
+## Project Structure
+
+```
+FloatPanel.Avalonia/
+├── FloatPanelLib/           # Control library
+│   ├── Controls/
+│   │   ├── FloatPanel.cs    # Main layout panel
+│   │   └── Spacer.cs         # Space-filling component
+│   └── AssemblyInfo.cs       # XML namespace definition
+├── FloatPanel/              # Shared UI project
+│   └── Views/
+│       └── MainView.axaml   # Example usage
+├── FloatPanel.Desktop/      # Desktop application
+├── FloatPanel.Browser/       # WebAssembly application
+├── docs/                    # Documentation (docfx)
+└── docfx.json              # docfx configuration
+```
+
+## Documentation
+
+Full documentation is available in the docs/ folder or via docfx.
 
 ## License
 

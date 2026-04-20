@@ -1,0 +1,19 @@
+### YamlMime:TableOfContent
+items:
+- uid: FloatPanel.Controls
+  name: FloatPanel.Controls
+  type: Namespace
+  items:
+  - uid: FloatPanel.Controls.AlignItems
+    name: AlignItems
+    type: Enum
+  - uid: FloatPanel.Controls.FloatPanel
+    name: FloatPanel
+    type: Class
+  - uid: FloatPanel.Controls.JustifyContent
+    name: JustifyContent
+    type: Enum
+  - uid: FloatPanel.Controls.Spacer
+    name: Spacer
+    type: Class
+memberLayout: SamePage

@@ -1,0 +1,220 @@
+### YamlMime:ManagedReference
+items:
+- uid: FloatPanel.Controls.JustifyContent
+  commentId: T:FloatPanel.Controls.JustifyContent
+  id: JustifyContent
+  parent: FloatPanel.Controls
+  children:
+  - FloatPanel.Controls.JustifyContent.Center
+  - FloatPanel.Controls.JustifyContent.End
+  - FloatPanel.Controls.JustifyContent.SpaceAround
+  - FloatPanel.Controls.JustifyContent.SpaceBetween
+  - FloatPanel.Controls.JustifyContent.SpaceEvenly
+  - FloatPanel.Controls.JustifyContent.Start
+  langs:
+  - csharp
+  - vb
+  name: JustifyContent
+  nameWithType: JustifyContent
+  fullName: FloatPanel.Controls.JustifyContent
+  type: Enum
+  source:
+    remote:
+      path: FloatPanelLib/Controls/FloatPanel.cs
+      branch: main
+      repo: https://github.com/0use-TE/FloatPanel.Avalonia.git
+    id: JustifyContent
+    path: FloatPanelLib/Controls/FloatPanel.cs
+    startLine: 8
+  assemblies:
+  - FloatPanelControls
+  namespace: FloatPanel.Controls
+  syntax:
+    content: public enum JustifyContent
+    content.vb: Public Enum JustifyContent
+- uid: FloatPanel.Controls.JustifyContent.Start
+  commentId: F:FloatPanel.Controls.JustifyContent.Start
+  id: Start
+  parent: FloatPanel.Controls.JustifyContent
+  langs:
+  - csharp
+  - vb
+  name: Start
+  nameWithType: JustifyContent.Start
+  fullName: FloatPanel.Controls.JustifyContent.Start
+  type: Field
+  source:
+    remote:
+      path: FloatPanelLib/Controls/FloatPanel.cs
+      branch: main
+      repo: https://github.com/0use-TE/FloatPanel.Avalonia.git
+    id: Start
+    path: FloatPanelLib/Controls/FloatPanel.cs
+    startLine: 10
+  assemblies:
+  - FloatPanelControls
+  namespace: FloatPanel.Controls
+  syntax:
+    content: Start = 0
+    return:
+      type: FloatPanel.Controls.JustifyContent
+- uid: FloatPanel.Controls.JustifyContent.Center
+  commentId: F:FloatPanel.Controls.JustifyContent.Center
+  id: Center
+  parent: FloatPanel.Controls.JustifyContent
+  langs:
+  - csharp
+  - vb
+  name: Center
+  nameWithType: JustifyContent.Center
+  fullName: FloatPanel.Controls.JustifyContent.Center
+  type: Field
+  source:
+    remote:
+      path: FloatPanelLib/Controls/FloatPanel.cs
+      branch: main
+      repo: https://github.com/0use-TE/FloatPanel.Avalonia.git
+    id: Center
+    path: FloatPanelLib/Controls/FloatPanel.cs
+    startLine: 11
+  assemblies:
+  - FloatPanelControls
+  namespace: FloatPanel.Controls
+  syntax:
+    content: Center = 1
+    return:
+      type: FloatPanel.Controls.JustifyContent
+- uid: FloatPanel.Controls.JustifyContent.End
+  commentId: F:FloatPanel.Controls.JustifyContent.End
+  id: End
+  parent: FloatPanel.Controls.JustifyContent
+  langs:
+  - csharp
+  - vb
+  name: End
+  nameWithType: JustifyContent.End
+  fullName: FloatPanel.Controls.JustifyContent.End
+  type: Field
+  source:
+    remote:
+      path: FloatPanelLib/Controls/FloatPanel.cs
+      branch: main
+      repo: https://github.com/0use-TE/FloatPanel.Avalonia.git
+    id: End
+    path: FloatPanelLib/Controls/FloatPanel.cs
+    startLine: 12
+  assemblies:
+  - FloatPanelControls
+  namespace: FloatPanel.Controls
+  syntax:
+    content: End = 2
+    return:
+      type: FloatPanel.Controls.JustifyContent
+- uid: FloatPanel.Controls.JustifyContent.SpaceBetween
+  commentId: F:FloatPanel.Controls.JustifyContent.SpaceBetween
+  id: SpaceBetween
+  parent: FloatPanel.Controls.JustifyContent
+  langs:
+  - csharp
+  - vb
+  name: SpaceBetween
+  nameWithType: JustifyContent.SpaceBetween
+  fullName: FloatPanel.Controls.JustifyContent.SpaceBetween
+  type: Field
+  source:
+    remote:
+      path: FloatPanelLib/Controls/FloatPanel.cs
+      branch: main
+      repo: https://github.com/0use-TE/FloatPanel.Avalonia.git
+    id: SpaceBetween
+    path: FloatPanelLib/Controls/FloatPanel.cs
+    startLine: 13
+  assemblies:
+  - FloatPanelControls
+  namespace: FloatPanel.Controls
+  syntax:
+    content: SpaceBetween = 3
+    return:
+      type: FloatPanel.Controls.JustifyContent
+- uid: FloatPanel.Controls.JustifyContent.SpaceAround
+  commentId: F:FloatPanel.Controls.JustifyContent.SpaceAround
+  id: SpaceAround
+  parent: FloatPanel.Controls.JustifyContent
+  langs:
+  - csharp
+  - vb
+  name: SpaceAround
+  nameWithType: JustifyContent.SpaceAround
+  fullName: FloatPanel.Controls.JustifyContent.SpaceAround
+  type: Field
+  source:
+    remote:
+      path: FloatPanelLib/Controls/FloatPanel.cs
+      branch: main
+      repo: https://github.com/0use-TE/FloatPanel.Avalonia.git
+    id: SpaceAround
+    path: FloatPanelLib/Controls/FloatPanel.cs
+    startLine: 14
+  assemblies:
+  - FloatPanelControls
+  namespace: FloatPanel.Controls
+  syntax:
+    content: SpaceAround = 4
+    return:
+      type: FloatPanel.Controls.JustifyContent
+- uid: FloatPanel.Controls.JustifyContent.SpaceEvenly
+  commentId: F:FloatPanel.Controls.JustifyContent.SpaceEvenly
+  id: SpaceEvenly
+  parent: FloatPanel.Controls.JustifyContent
+  langs:
+  - csharp
+  - vb
+  name: SpaceEvenly
+  nameWithType: JustifyContent.SpaceEvenly
+  fullName: FloatPanel.Controls.JustifyContent.SpaceEvenly
+  type: Field
+  source:
+    remote:
+      path: FloatPanelLib/Controls/FloatPanel.cs
+      branch: main
+      repo: https://github.com/0use-TE/FloatPanel.Avalonia.git
+    id: SpaceEvenly
+    path: FloatPanelLib/Controls/FloatPanel.cs
+    startLine: 15
+  assemblies:
+  - FloatPanelControls
+  namespace: FloatPanel.Controls
+  syntax:
+    content: SpaceEvenly = 5
+    return:
+      type: FloatPanel.Controls.JustifyContent
+references:
+- uid: FloatPanel.Controls
+  commentId: N:FloatPanel.Controls
+  href: FloatPanel.html
+  name: FloatPanel.Controls
+  nameWithType: FloatPanel.Controls
+  fullName: FloatPanel.Controls
+  spec.csharp:
+  - uid: FloatPanel
+    name: FloatPanel
+    href: FloatPanel.html
+  - name: .
+  - uid: FloatPanel.Controls
+    name: Controls
+    href: FloatPanel.Controls.html
+  spec.vb:
+  - uid: FloatPanel
+    name: FloatPanel
+    href: FloatPanel.html
+  - name: .
+  - uid: FloatPanel.Controls
+    name: Controls
+    href: FloatPanel.Controls.html
+- uid: FloatPanel.Controls.JustifyContent
+  commentId: T:FloatPanel.Controls.JustifyContent
+  parent: FloatPanel.Controls
+  href: FloatPanel.Controls.JustifyContent.html
+  name: JustifyContent
+  nameWithType: JustifyContent
+  fullName: FloatPanel.Controls.JustifyContent
