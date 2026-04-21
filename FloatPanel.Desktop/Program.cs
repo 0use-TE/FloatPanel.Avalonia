@@ -1,5 +1,6 @@
 ﻿using System;
 using Avalonia;
+using FloatPanel.UI;
 
 namespace FloatPanel.Desktop;
 
