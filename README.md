@@ -24,6 +24,12 @@ A flexible layout panel for Avalonia UI, inspired by MudBlazor's MudStack and Mu
 | iOS | Supported |
 | Android | Supported |
 
+## Demo
+
+![FloatPanel Demo](docs/images/floatpanel-demo.png)
+
+[Watch Video Demo](docs/images/floatpanel-demo.mp4)
+
 ## Installation
 
 ### NuGet Package

@@ -29,6 +29,12 @@ The main container component that arranges its children based on:
 
 A zero-sized component that consumes all remaining space in the main axis direction. Multiple Spacers distribute available space equally among themselves.
 
+## Demo
+
+![FloatPanel Demo](images/floatpanel-demo.png)
+
+[Watch Video Demo](images/floatpanel-demo.mp4)
+
 ## Quick Example
 
 ```xml
