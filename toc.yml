@@ -1,4 +1,13 @@
-- name: Docs
-  href: docs/
-- name: API
+- name: Home
+  href: index.md
+- name: Documentation
+  dropdown: true
+  items:
+    - name: v2.1 (Current)
+      href: docs/v2.1/
+    - name: v2.0 (Legacy)
+      href: docs/v2.0/
+- name: Live Demo
+  href: demo/
+- name: API Reference
   href: api/

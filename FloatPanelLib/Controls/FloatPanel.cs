@@ -1,428 +1,326 @@
 using System;
-using System.Linq;
+using System.Collections.Generic;
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Layout;
 
 namespace FloatPanel.Controls;
 
-public enum JustifyContent
-{
-    Start,
-    Center,
-    End,
-    SpaceBetween,
-    SpaceAround,
-    SpaceEvenly
-}
-
-public enum AlignItems
-{
-    Start,
-    Center,
-    End,
-    Stretch
-}
-
+/// <summary>
+/// Arranges child items along the vertical or horizontal axis with optional spacing,
+/// alignment, wrapping, and responsive breakpoints. API mirrors MudBlazor's MudStack.
+/// </summary>
 public class FloatPanel : Panel
 {
-    public static readonly StyledProperty<Orientation> OrientationProperty =
-        AvaloniaProperty.Register<FloatPanel, Orientation>(nameof(Orientation), Orientation.Horizontal);
+    public static readonly StyledProperty<bool> RowProperty =
+        AvaloniaProperty.Register<FloatPanel, bool>(nameof(Row));
 
-    public static readonly StyledProperty<double> SpacingProperty =
-        AvaloniaProperty.Register<FloatPanel, double>(nameof(Spacing), 8);
+    public static readonly StyledProperty<bool> ReverseProperty =
+        AvaloniaProperty.Register<FloatPanel, bool>(nameof(Reverse));
 
-    public static readonly StyledProperty<JustifyContent> JustifyProperty =
-        AvaloniaProperty.Register<FloatPanel, JustifyContent>(nameof(Justify), JustifyContent.Start);
+    public static readonly StyledProperty<int> SpacingProperty =
+        AvaloniaProperty.Register<FloatPanel, int>(nameof(Spacing), 3);
 
-    public static readonly StyledProperty<AlignItems> AlignProperty =
-        AvaloniaProperty.Register<FloatPanel, AlignItems>(nameof(Align), AlignItems.Stretch);
+    public static readonly StyledProperty<Justify?> JustifyProperty =
+        AvaloniaProperty.Register<FloatPanel, Justify?>(nameof(Justify));
 
-    public static readonly StyledProperty<bool> WrapProperty =
-        AvaloniaProperty.Register<FloatPanel, bool>(nameof(Wrap), false);
+    public static readonly StyledProperty<AlignItems?> AlignItemsProperty =
+        AvaloniaProperty.Register<FloatPanel, AlignItems?>(nameof(AlignItems));
 
-    public Orientation Orientation
+    public static readonly StyledProperty<StretchItems?> StretchItemsProperty =
+        AvaloniaProperty.Register<FloatPanel, StretchItems?>(nameof(StretchItems));
+
+    public static readonly StyledProperty<Wrap?> WrapProperty =
+        AvaloniaProperty.Register<FloatPanel, Wrap?>(nameof(Wrap));
+
+    public static readonly StyledProperty<Breakpoint> BreakpointProperty =
+        AvaloniaProperty.Register<FloatPanel, Breakpoint>(nameof(Breakpoint), Breakpoint.None);
+
+    private bool _effectiveRow;
+    private double _lastViewportWidth = double.NaN;
+
+    static FloatPanel()
     {
-        get => GetValue(OrientationProperty);
-        set => SetValue(OrientationProperty, value);
+        AffectsMeasure<FloatPanel>(
+            RowProperty,
+            ReverseProperty,
+            SpacingProperty,
+            JustifyProperty,
+            AlignItemsProperty,
+            StretchItemsProperty,
+            WrapProperty,
+            BreakpointProperty);
+
+        AffectsArrange<FloatPanel>(
+            RowProperty,
+            ReverseProperty,
+            SpacingProperty,
+            JustifyProperty,
+            AlignItemsProperty,
+            StretchItemsProperty,
+            WrapProperty,
+            BreakpointProperty);
     }
 
-    public double Spacing
+    /// <summary>
+    /// When <c>true</c>, items flow horizontally. Default is vertical (column), like MudStack.
+    /// </summary>
+    public bool Row
+    {
+        get => GetValue(RowProperty);
+        set => SetValue(RowProperty, value);
+    }
+
+    /// <summary>
+    /// Reverses the visual order of items along the main axis.
+    /// </summary>
+    public bool Reverse
+    {
+        get => GetValue(ReverseProperty);
+        set => SetValue(ReverseProperty, value);
+    }
+
+    /// <summary>
+    /// Gap between items in 4 px increments. Default is 3 (12 px), matching MudStack.
+    /// </summary>
+    public int Spacing
     {
         get => GetValue(SpacingProperty);
         set => SetValue(SpacingProperty, value);
     }
 
-    public JustifyContent Justify
+    /// <summary>
+    /// Distribution of items along the main axis.
+    /// </summary>
+    public Justify? Justify
     {
         get => GetValue(JustifyProperty);
         set => SetValue(JustifyProperty, value);
     }
 
-    public AlignItems Align
+    /// <summary>
+    /// Alignment of items along the cross axis.
+    /// </summary>
+    public AlignItems? AlignItems
     {
-        get => GetValue(AlignProperty);
-        set => SetValue(AlignProperty, value);
+        get => GetValue(AlignItemsProperty);
+        set => SetValue(AlignItemsProperty, value);
     }
 
-    public bool Wrap
+    /// <summary>
+    /// Stretching behaviour of children along the main axis.
+    /// </summary>
+    public StretchItems? StretchItems
+    {
+        get => GetValue(StretchItemsProperty);
+        set => SetValue(StretchItemsProperty, value);
+    }
+
+    /// <summary>
+    /// Wrapping behaviour when content exceeds the available space.
+    /// </summary>
+    public Wrap? Wrap
     {
         get => GetValue(WrapProperty);
         set => SetValue(WrapProperty, value);
     }
 
+    /// <summary>
+    /// Viewport breakpoint that toggles between row and column layout.
+    /// </summary>
+    public Breakpoint Breakpoint
+    {
+        get => GetValue(BreakpointProperty);
+        set => SetValue(BreakpointProperty, value);
+    }
+
+    private double Gap => Math.Max(0, Spacing) * 4d;
+
+    private Justify EffectiveJustify => Justify ?? Controls.Justify.FlexStart;
+
+    private AlignItems EffectiveAlignItems => AlignItems ?? Controls.AlignItems.Stretch;
+
+    private Wrap EffectiveWrap => Wrap ?? Controls.Wrap.NoWrap;
+
+    private StretchItems EffectiveStretchItems => StretchItems ?? Controls.StretchItems.None;
+
+    protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
+    {
+        base.OnPropertyChanged(change);
+
+        if (change.Property == BoundsProperty)
+            UpdateEffectiveRow(forceInvalidate: true);
+    }
+
     protected override Size MeasureOverride(Size availableSize)
     {
-        double width = 0;
-        double height = 0;
+        UpdateEffectiveRow(forceInvalidate: false);
 
-        foreach (var child in Children)
-        {
-            child.Measure(availableSize);
+        if (EffectiveWrap != Controls.Wrap.NoWrap)
+            return MeasureWrapped(availableSize);
 
-            if (Orientation == Orientation.Horizontal)
-            {
-                width += child.DesiredSize.Width;
-                height = Math.Max(height, child.DesiredSize.Height);
-            }
-            else
-            {
-                width = Math.Max(width, child.DesiredSize.Width);
-                height += child.DesiredSize.Height;
-            }
-        }
+        var items = FloatPanelLayout.CreateChildren(Children, Reverse, _effectiveRow, availableSize);
+        var gap = Gap;
+        var gapCount = CountGaps(items);
+        var main = SumMain(items) + gapCount * gap;
+        var cross = MaxCross(items);
 
-        int spacerCount = Children.Count(c => c is Spacer);
-        int gapCount = Math.Max(0, Children.Count - spacerCount - 1);
-        double totalSpacing = gapCount * Spacing;
-
-        if (Orientation == Orientation.Horizontal)
-            width += totalSpacing;
-        else
-            height += totalSpacing;
-
-        return new Size(width, height);
+        return _effectiveRow ? new Size(main, cross) : new Size(cross, main);
     }
 
     protected override Size ArrangeOverride(Size finalSize)
     {
-        if (!Wrap)
-        {
-            return ArrangeNoWrap(finalSize);
-        }
+        UpdateEffectiveRow(forceInvalidate: false);
 
-        if (Orientation == Orientation.Horizontal)
-        {
-            return ArrangeWrapHorizontal(finalSize);
-        }
-        else
-        {
-            return ArrangeWrapVertical(finalSize);
-        }
+        if (EffectiveWrap != Controls.Wrap.NoWrap)
+            return ArrangeWrapped(finalSize);
+
+        var items = new List<LayoutChild>(FloatPanelLayout.CreateChildren(Children, Reverse, _effectiveRow, finalSize));
+        ArrangeLine(items, finalSize);
+        return finalSize;
     }
 
-    private Size ArrangeNoWrap(Size finalSize)
+    private Size MeasureWrapped(Size availableSize)
     {
-        int spacerCount = Children.Count(c => c is Spacer);
-        int nonSpacerCount = Children.Count - spacerCount;
-        int gapCount = Math.Max(0, nonSpacerCount - 1);
+        var items = FloatPanelLayout.CreateChildren(Children, Reverse, _effectiveRow, availableSize);
+        var availableMain = _effectiveRow ? availableSize.Width : availableSize.Height;
+        if (double.IsInfinity(availableMain))
+            availableMain = SumMain(items) + CountGaps(items) * Gap;
 
-        double totalContentSize = 0;
-        foreach (var child in Children)
+        var lines = FloatPanelLayout.BuildLines(items, _effectiveRow, Gap, availableMain, EffectiveWrap);
+        var gap = Gap;
+        var totalCross = 0d;
+        var maxMain = 0d;
+
+        foreach (var line in lines)
         {
-            totalContentSize += Orientation == Orientation.Horizontal
-                ? child.DesiredSize.Width
-                : child.DesiredSize.Height;
+            var lineMain = SumMain(line) + CountGaps(line) * gap;
+            var lineCross = MaxCross(line);
+            totalCross += lineCross;
+            maxMain = Math.Max(maxMain, lineMain);
         }
 
-        double totalSpacing = gapCount * Spacing;
-        double totalSize = totalContentSize + totalSpacing;
-        double available = Orientation == Orientation.Horizontal ? finalSize.Width : finalSize.Height;
+        if (lines.Count > 1)
+            totalCross += (lines.Count - 1) * gap;
 
-        double offset = 0;
-        if (spacerCount == 0)
+        return _effectiveRow ? new Size(maxMain, totalCross) : new Size(totalCross, maxMain);
+    }
+
+    private Size ArrangeWrapped(Size finalSize)
+    {
+        var items = FloatPanelLayout.CreateChildren(Children, Reverse, _effectiveRow, finalSize);
+        var availableMain = _effectiveRow ? finalSize.Width : finalSize.Height;
+        var lines = FloatPanelLayout.BuildLines(items, _effectiveRow, Gap, availableMain, EffectiveWrap);
+        var gap = Gap;
+        var crossCursor = 0d;
+
+        foreach (var line in lines)
         {
-            switch (Justify)
-            {
-                case JustifyContent.Center:
-                    offset = (available - totalSize) / 2;
-                    break;
-                case JustifyContent.End:
-                    offset = available - totalSize;
-                    break;
-                case JustifyContent.SpaceBetween:
-                    if (nonSpacerCount > 1 && available > totalSize)
-                        totalSpacing = (available - totalContentSize) / gapCount;
-                    break;
-                case JustifyContent.SpaceAround:
-                case JustifyContent.SpaceEvenly:
-                    if (nonSpacerCount > 0 && available > totalSize)
-                    {
-                        double space = (available - totalSize) / (nonSpacerCount + 1);
-                        offset = space;
-                        totalSpacing = space;
-                    }
-                    break;
-            }
-        }
+            var lineCross = MaxCross(line);
+            var lineSize = _effectiveRow
+                ? new Size(finalSize.Width, lineCross)
+                : new Size(lineCross, finalSize.Height);
 
-        offset = Math.Max(0, offset);
+            ArrangeLine(line, lineSize, crossCursor);
 
-        double crossSize = Orientation == Orientation.Horizontal ? finalSize.Height : finalSize.Width;
-        double crossOffset = 0;
-
-        if (Align != AlignItems.Stretch)
-        {
-            foreach (var child in Children)
-            {
-                double childCrossSize = Orientation == Orientation.Horizontal
-                    ? child.DesiredSize.Height
-                    : child.DesiredSize.Width;
-                if (childCrossSize < crossSize)
-                {
-                    crossOffset = Align switch
-                    {
-                        AlignItems.Center => (crossSize - childCrossSize) / 2,
-                        AlignItems.End => crossSize - childCrossSize,
-                        _ => 0
-                    };
-                    break;
-                }
-            }
-        }
-
-        double x = offset;
-        double y = Orientation == Orientation.Horizontal ? crossOffset : offset;
-
-        for (int i = 0; i < Children.Count; i++)
-        {
-            var child = Children[i];
-            double childWidth = child.DesiredSize.Width;
-            double childHeight = child.DesiredSize.Height;
-            double childMainSize = Orientation == Orientation.Horizontal ? childWidth : childHeight;
-
-            if (child is Spacer)
-            {
-                int itemsAfter = 0;
-                double sizeAfter = 0;
-                for (int j = i + 1; j < Children.Count; j++)
-                {
-                    if (Children[j] is Spacer) continue;
-                    itemsAfter++;
-                    sizeAfter += Orientation == Orientation.Horizontal
-                        ? Children[j].DesiredSize.Width
-                        : Children[j].DesiredSize.Height;
-                }
-                int gapsAfter = Math.Max(0, itemsAfter - 1);
-                double remaining = available - x - sizeAfter - gapsAfter * Spacing;
-                childMainSize = Math.Max(0, remaining);
-            }
-
-            Rect bounds;
-            if (Orientation == Orientation.Horizontal)
-            {
-                bounds = new Rect(x, Align == AlignItems.Stretch ? 0 : crossOffset,
-                    childMainSize, Align == AlignItems.Stretch ? finalSize.Height : childHeight);
-                x += childMainSize;
-            }
-            else
-            {
-                bounds = new Rect(Align == AlignItems.Stretch ? 0 : crossOffset, y,
-                    Align == AlignItems.Stretch ? finalSize.Width : childWidth, childMainSize);
-                y += childMainSize;
-            }
-
-            child.Arrange(bounds);
-
-            if (!(child is Spacer) && i < Children.Count - 1)
-            {
-                if (Orientation == Orientation.Horizontal)
-                    x += Spacing;
-                else
-                    y += Spacing;
-            }
+            crossCursor += lineCross + gap;
         }
 
         return finalSize;
     }
 
-    private Size ArrangeWrapHorizontal(Size finalSize)
+    private void ArrangeLine(IList<LayoutChild> items, Size lineSize, double crossOrigin = 0)
     {
-        double y = 0;
-        double rowHeight = 0;
-        double x = 0;
-        bool firstInRow = true;
+        var gap = Gap;
+        var availableMain = _effectiveRow ? lineSize.Width : lineSize.Height;
+        var availableCross = _effectiveRow ? lineSize.Height : lineSize.Width;
+        var contentMain = SumMain(items);
+        var gapCount = Math.Max(0, items.Count - 1);
+        var hasSpacer = HasSpacer(items);
 
-        var rows = new List<List<Control>>();
-        var currentRow = new List<Control>();
-        double currentRowWidth = 0;
+        FloatPanelLayout.DistributeSpacers(items, availableMain - contentMain - gapCount * gap);
 
-        foreach (var child in Children)
+        contentMain = SumMain(items);
+        var extraMain = availableMain - contentMain - gapCount * gap;
+        FloatPanelLayout.ApplyStretchItems(items, EffectiveStretchItems, extraMain);
+
+        contentMain = SumMain(items);
+        gap = FloatPanelLayout.ResolveGap(EffectiveJustify, gap, availableMain, contentMain + gapCount * gap, gapCount, hasSpacer);
+        var mainOffset = FloatPanelLayout.ComputeMainOffset(
+            EffectiveJustify,
+            availableMain,
+            contentMain + gapCount * gap,
+            gapCount,
+            hasSpacer);
+
+        if (EffectiveJustify == Controls.Justify.SpaceAround && !hasSpacer && gapCount > 0)
+            mainOffset = gap / 2;
+
+        var cursor = mainOffset;
+
+        for (var i = 0; i < items.Count; i++)
         {
-            double childWidth = child.DesiredSize.Width;
+            var item = items[i];
+            var crossSize = FloatPanelLayout.ResolveCrossSize(EffectiveAlignItems, availableCross, item.CrossSize);
+            var crossOffset = FloatPanelLayout.ComputeCrossOffset(EffectiveAlignItems, availableCross, item.CrossSize);
 
-            if (!firstInRow)
-                currentRowWidth += Spacing;
-
-            if (currentRowWidth + childWidth > finalSize.Width && !firstInRow)
+            if (_effectiveRow)
             {
-                rows.Add(currentRow);
-                currentRow = new List<Control>();
-                currentRowWidth = childWidth;
-                firstInRow = true;
+                item.Control.Arrange(new Rect(cursor, crossOrigin + crossOffset, item.MainSize, crossSize));
             }
             else
             {
-                currentRowWidth += childWidth;
-                firstInRow = false;
+                item.Control.Arrange(new Rect(crossOrigin + crossOffset, cursor, crossSize, item.MainSize));
             }
 
-            currentRow.Add(child);
+            cursor += item.MainSize;
+
+            if (i < items.Count - 1)
+                cursor += gap;
         }
-
-        if (currentRow.Count > 0)
-            rows.Add(currentRow);
-
-        foreach (var row in rows)
-        {
-            rowHeight = 0;
-            foreach (var child in row)
-            {
-                rowHeight = Math.Max(rowHeight, child.DesiredSize.Height);
-            }
-
-            double rowContentSize = 0;
-            foreach (var child in row)
-            {
-                rowContentSize += child.DesiredSize.Width;
-            }
-
-            x = 0;
-            for (int i = 0; i < row.Count; i++)
-            {
-                var child = row[i];
-                double childWidth = child.DesiredSize.Width;
-                double childHeight = child.DesiredSize.Height;
-                double width = childWidth;
-
-                if (child is Spacer)
-                {
-                    int itemsAfter = 0;
-                    double sizeAfter = 0;
-                    for (int j = i + 1; j < row.Count; j++)
-                    {
-                        if (row[j] is Spacer) continue;
-                        itemsAfter++;
-                        sizeAfter += row[j].DesiredSize.Width;
-                    }
-                    int gapsAfter = Math.Max(0, itemsAfter - 1);
-                    double remaining = finalSize.Width - x - sizeAfter - gapsAfter * Spacing;
-                    width = Math.Max(0, remaining);
-                }
-
-                var bounds = new Rect(x, y, width, rowHeight);
-                child.Arrange(bounds);
-
-                if (!(child is Spacer))
-                {
-                    x += childWidth + Spacing;
-                }
-                else
-                {
-                    x += width;
-                }
-            }
-
-            y += rowHeight + Spacing;
-        }
-
-        return finalSize;
     }
 
-    private Size ArrangeWrapVertical(Size finalSize)
+    private void UpdateEffectiveRow(bool forceInvalidate)
     {
-        double x = 0;
-        double colWidth = 0;
-        double y = 0;
-        bool firstInCol = true;
+        var viewportWidth = double.IsNaN(Bounds.Width) ? 0 : Bounds.Width;
+        var effectiveRow = BreakpointHelper.ResolveEffectiveRow(Row, Breakpoint, viewportWidth);
 
-        var cols = new List<List<Control>>();
-        var currentCol = new List<Control>();
-        double currentColHeight = 0;
-
-        foreach (var child in Children)
+        if (Math.Abs(viewportWidth - _lastViewportWidth) > 0.5 || effectiveRow != _effectiveRow)
         {
-            double childHeight = child.DesiredSize.Height;
+            _lastViewportWidth = viewportWidth;
+            _effectiveRow = effectiveRow;
 
-            if (!firstInCol)
-                currentColHeight += Spacing;
+            if (forceInvalidate)
+                InvalidateMeasure();
+        }
+    }
 
-            if (currentColHeight + childHeight > finalSize.Height && !firstInCol)
-            {
-                cols.Add(currentCol);
-                currentCol = new List<Control>();
-                currentColHeight = childHeight;
-                firstInCol = true;
-            }
-            else
-            {
-                currentColHeight += childHeight;
-                firstInCol = false;
-            }
-
-            currentCol.Add(child);
+    private static bool HasSpacer(IEnumerable<LayoutChild> items)
+    {
+        foreach (var item in items)
+        {
+            if (item.IsSpacer)
+                return true;
         }
 
-        if (currentCol.Count > 0)
-            cols.Add(currentCol);
+        return false;
+    }
 
-        foreach (var col in cols)
-        {
-            colWidth = 0;
-            foreach (var child in col)
-            {
-                colWidth = Math.Max(colWidth, child.DesiredSize.Width);
-            }
+    private static int CountGaps(IReadOnlyCollection<LayoutChild> items)
+        => Math.Max(0, items.Count - 1);
 
-            y = 0;
-            for (int i = 0; i < col.Count; i++)
-            {
-                var child = col[i];
-                double childWidth = child.DesiredSize.Width;
-                double childHeight = child.DesiredSize.Height;
-                double height = childHeight;
+    private static double SumMain(IEnumerable<LayoutChild> items)
+    {
+        var total = 0d;
+        foreach (var item in items)
+            total += item.MainSize;
+        return total;
+    }
 
-                if (child is Spacer)
-                {
-                    int itemsAfter = 0;
-                    double sizeAfter = 0;
-                    for (int j = i + 1; j < col.Count; j++)
-                    {
-                        if (col[j] is Spacer) continue;
-                        itemsAfter++;
-                        sizeAfter += col[j].DesiredSize.Height;
-                    }
-                    int gapsAfter = Math.Max(0, itemsAfter - 1);
-                    double remaining = finalSize.Height - y - sizeAfter - gapsAfter * Spacing;
-                    height = Math.Max(0, remaining);
-                }
-
-                var bounds = new Rect(x, y, colWidth, height);
-                child.Arrange(bounds);
-
-                if (!(child is Spacer))
-                {
-                    y += childHeight + Spacing;
-                }
-                else
-                {
-                    y += height;
-                }
-            }
-
-            x += colWidth + Spacing;
-        }
-
-        return finalSize;
+    private static double MaxCross(IEnumerable<LayoutChild> items)
+    {
+        var max = 0d;
+        foreach (var item in items)
+            max = Math.Max(max, item.CrossSize);
+        return max;
     }
 }

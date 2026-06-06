@@ -2,82 +2,204 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:viewmodels="using:FloatPanel.ViewModels"
-             xmlns:vm="using:FloatPanel.UI.ViewModels"
-             mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="700"
+             xmlns:vm="using:FloatPanel.ViewModels"
+             mc:Ignorable="d"
+             d:DesignWidth="1100"
+             d:DesignHeight="900"
              x:Class="FloatPanel.UI.Views.MainView"
-             x:DataType="viewmodels:MainViewModel">
+             x:DataType="vm:MainViewModel">
 
   <ScrollViewer>
-    <StackPanel Margin="20">
+    <StackPanel Margin="24" Spacing="24">
 
-      <TextBlock Text="1. Horizontal (Left-Space-Right)" FontWeight="Bold" Margin="0,0,0,5"/>
-      <FloatPanel Orientation="Horizontal" Margin="0,0,0,20" Height="30">
-        <Button Content="Settings"/>
-        <Spacer/>
-        <Button Content="Apply"/>
-      </FloatPanel>
+      <StackPanel Spacing="6" MaxWidth="1100">
+        <TextBlock Text="FloatPanel Live Demo" FontSize="28" FontWeight="Bold" />
+        <TextBlock Text="Left: live preview. Right: XAML source (plain text)."
+                   Opacity="0.75"
+                   TextWrapping="Wrap" />
+      </StackPanel>
 
-      <TextBlock Text="2. Vertical (Top-Space-Bottom)" FontWeight="Bold" Margin="0,0,0,5"/>
-      <FloatPanel Orientation="Vertical" Margin="0,0,0,20" Height="80">
-        <TextBlock Text="Title"/>
-        <Spacer/>
-        <Button Content="OK"/>
-      </FloatPanel>
+      <Border Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+              CornerRadius="8"
+              Padding="16"
+              MaxWidth="1100">
+        <StackPanel Spacing="12">
+          <TextBlock Text="Playground" FontSize="18" FontWeight="SemiBold" />
 
-      <TextBlock Text="3. Horizontal Wrap" FontWeight="Bold" Margin="0,0,0,5"/>
-      <FloatPanel Orientation="Horizontal" Wrap="True" Margin="0,0,0,20" Height="100">
-        <Button Content="Left1" Margin="0,0,5,5"/>
-        <Button Content="Left2" Margin="0,0,5,5"/>
-        <Spacer/>
-        <Button Content="Right1" Margin="0,0,5,5"/>
-        <Button Content="Right2" Margin="0,0,5,5"/>
-        <Button Content="Right3" Margin="0,0,5,5"/>
-      </FloatPanel>
+          <FloatPanel Row="True" Spacing="2" Wrap="Wrap">
+            <ToggleSwitch Content="Row" IsChecked="{Binding Row}" />
+            <ToggleSwitch Content="Reverse" IsChecked="{Binding Reverse}" />
+          </FloatPanel>
 
-      <TextBlock Text="4. Vertical Wrap" FontWeight="Bold" Margin="0,0,0,5"/>
-      <FloatPanel Orientation="Vertical" Wrap="True" Margin="0,0,0,20" Width="200" Height="120">
-        <TextBlock Text="Top1" Margin="0,0,0,5"/>
-        <TextBlock Text="Top2" Margin="0,0,0,5"/>
-        <Spacer/>
-        <TextBlock Text="Bottom1" Margin="0,0,0,5"/>
-        <TextBlock Text="Bottom2" Margin="0,0,0,5"/>
-        <TextBlock Text="Bottom3" Margin="0,0,0,5"/>
-      </FloatPanel>
+          <StackPanel Spacing="4">
+            <TextBlock Text="{Binding Spacing, StringFormat=Spacing: {0} (×4 px)}" />
+            <Slider Minimum="0" Maximum="16" Value="{Binding Spacing}" TickFrequency="1" IsSnapToTickEnabled="True" />
+          </StackPanel>
 
-      <TextBlock Text="5. Horizontal Scroll" FontWeight="Bold" Margin="0,0,0,5"/>
-      <ScrollViewer HorizontalScrollBarVisibility="Auto" Margin="0,0,0,5">
-        <FloatPanel Orientation="Horizontal" Margin="0,0,0,20">
-          <Button Content="1" Margin="0,0,5,0"/>
-          <Button Content="2" Margin="0,0,5,0"/>
-          <Button Content="3" Margin="0,0,5,0"/>
-          <Button Content="4" Margin="0,0,5,0"/>
-          <Button Content="5" Margin="0,0,5,0"/>
-          <Spacer/>
-          <Button Content="6" Margin="0,0,5,0"/>
-          <Button Content="7" Margin="0,0,5,0"/>
-          <Button Content="8" Margin="0,0,5,0"/>
-          <Button Content="9" Margin="0,0,5,0"/>
-          <Button Content="10" Margin="0,0,5,0"/>
-        </FloatPanel>
-      </ScrollViewer>
+          <FloatPanel Row="True" Spacing="2" Wrap="Wrap">
+            <ComboBox ItemsSource="{Binding JustifyValues}" SelectedItem="{Binding Justify}" MinWidth="160" />
+            <ComboBox ItemsSource="{Binding AlignItemsValues}" SelectedItem="{Binding AlignItems}" MinWidth="160" />
+            <ComboBox ItemsSource="{Binding WrapValues}" SelectedItem="{Binding Wrap}" MinWidth="140" />
+            <ComboBox ItemsSource="{Binding StretchItemsValues}" SelectedItem="{Binding StretchItems}" MinWidth="160" />
+            <ComboBox ItemsSource="{Binding BreakpointValues}" SelectedItem="{Binding Breakpoint}" MinWidth="160" />
+          </FloatPanel>
+        </StackPanel>
+      </Border>
 
-      <TextBlock Text="6. Vertical Scroll" FontWeight="Bold" Margin="0,0,0,5"/>
-      <ScrollViewer VerticalScrollBarVisibility="Auto" Height="150" Margin="0,0,0,20">
-        <FloatPanel Orientation="Vertical" Margin="0,0,0,20">
-          <Button Content="1" Margin="0,0,0,5"/>
-          <Button Content="2" Margin="0,0,0,5"/>
-          <Button Content="3" Margin="0,0,0,5"/>
-          <Button Content="4" Margin="0,0,0,5"/>
-          <Button Content="5" Margin="0,0,0,5"/>
-          <Spacer/>
-          <Button Content="6" Margin="0,0,0,5"/>
-          <Button Content="7" Margin="0,0,0,5"/>
-          <Button Content="8" Margin="0,0,0,5"/>
-          <Button Content="9" Margin="0,0,0,5"/>
-          <Button Content="10" Margin="0,0,0,5"/>
-        </FloatPanel>
-      </ScrollViewer>
+      <Border Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+              CornerRadius="8"
+              Padding="16"
+              MaxWidth="1100">
+        <StackPanel Spacing="12">
+          <TextBlock Text="Preview" FontSize="18" FontWeight="SemiBold" />
+
+          <Grid ColumnDefinitions="*,Auto">
+            <Border Grid.Column="0"
+                    BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}"
+                    BorderThickness="1"
+                    CornerRadius="6"
+                    Padding="12"
+                    MinHeight="160">
+              <FloatPanel Row="{Binding Row}"
+                          Reverse="{Binding Reverse}"
+                          Spacing="{Binding Spacing}"
+                          Justify="{Binding Justify}"
+                          AlignItems="{Binding AlignItems}"
+                          Wrap="{Binding Wrap}"
+                          StretchItems="{Binding StretchItems}"
+                          Breakpoint="{Binding Breakpoint}">
+                <Border Background="#5C6BC0" CornerRadius="4" Padding="12,8">
+                  <TextBlock Text="Item 1" Foreground="White" />
+                </Border>
+                <Border Background="#26A69A" CornerRadius="4" Padding="12,8">
+                  <TextBlock Text="Item 2" Foreground="White" />
+                </Border>
+                <Border Background="#FFA726" CornerRadius="4" Padding="12,8">
+                  <TextBlock Text="Item 3" Foreground="White" />
+                </Border>
+              </FloatPanel>
+            </Border>
+
+            <Border Grid.Column="1"
+                    Width="380"
+                    Margin="12,0,0,0"
+                    Background="#1E1E1E"
+                    BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}"
+                    BorderThickness="1"
+                    CornerRadius="6"
+                    IsVisible="{Binding IsPlaygroundCodeOpen}">
+              <Grid RowDefinitions="Auto,*">
+                <Border Grid.Row="0" Background="#2D2D2D" Padding="8,6">
+                  <Grid ColumnDefinitions="*,Auto">
+                    <TextBlock Text="XAML" Foreground="#CCCCCC" FontWeight="SemiBold" VerticalAlignment="Center" />
+                    <Button Grid.Column="1" Classes="flat" Padding="6,2" Foreground="#CCCCCC"
+                            Content="Hide" Command="{Binding HidePlaygroundCodeCommand}" />
+                  </Grid>
+                </Border>
+                <ScrollViewer Grid.Row="1" Padding="12">
+                  <TextBlock Text="{Binding PlaygroundXaml}"
+                             FontFamily="Consolas,Cascadia Mono,monospace"
+                             FontSize="12"
+                             Foreground="#D4D4D4"
+                             TextWrapping="Wrap" />
+                </ScrollViewer>
+              </Grid>
+            </Border>
+
+            <Button Grid.Column="1"
+                    Width="36"
+                    Margin="8,0,0,0"
+                    Content="Code"
+                    ToolTip.Tip="Show XAML"
+                    Command="{Binding ShowPlaygroundCodeCommand}"
+                    IsVisible="{Binding !IsPlaygroundCodeOpen}" />
+          </Grid>
+        </StackPanel>
+      </Border>
+
+      <Border Background="{DynamicResource CardBackgroundFillColorDefaultBrush}" CornerRadius="8" Padding="16" MaxWidth="1100">
+        <StackPanel Spacing="12">
+          <TextBlock Text="Spacer (toolbar pattern)" FontSize="18" FontWeight="SemiBold" />
+          <Grid ColumnDefinitions="*,380">
+            <Border Grid.Column="0" BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="6" Padding="12">
+              <FloatPanel Row="True" Spacing="2" AlignItems="Center">
+                <Button Content="Settings" />
+                <Spacer />
+                <Button Content="Apply" Classes="accent" />
+              </FloatPanel>
+            </Border>
+            <Border Grid.Column="1" Margin="12,0,0,0" Background="#1E1E1E" BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="6">
+              <ScrollViewer Padding="12">
+                <TextBlock Text="{Binding SpacerExampleXaml}" FontFamily="Consolas,Cascadia Mono,monospace" FontSize="12" Foreground="#D4D4D4" TextWrapping="Wrap" />
+              </ScrollViewer>
+            </Border>
+          </Grid>
+        </StackPanel>
+      </Border>
+
+      <Border Background="{DynamicResource CardBackgroundFillColorDefaultBrush}" CornerRadius="8" Padding="16" MaxWidth="1100">
+        <StackPanel Spacing="12">
+          <TextBlock Text="Vertical stack (default)" FontSize="18" FontWeight="SemiBold" />
+          <Grid ColumnDefinitions="*,380">
+            <Border Grid.Column="0" BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="6" Padding="12" MinHeight="180">
+              <FloatPanel Spacing="2" Width="220">
+                <TextBlock Text="Title" FontWeight="SemiBold" />
+                <TextBlock Text="Description goes here." Opacity="0.7" TextWrapping="Wrap" />
+                <Spacer />
+                <Button Content="OK" HorizontalAlignment="Stretch" />
+              </FloatPanel>
+            </Border>
+            <Border Grid.Column="1" Margin="12,0,0,0" Background="#1E1E1E" BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="6">
+              <ScrollViewer Padding="12">
+                <TextBlock Text="{Binding VerticalExampleXaml}" FontFamily="Consolas,Cascadia Mono,monospace" FontSize="12" Foreground="#D4D4D4" TextWrapping="Wrap" />
+              </ScrollViewer>
+            </Border>
+          </Grid>
+        </StackPanel>
+      </Border>
+
+      <Border Background="{DynamicResource CardBackgroundFillColorDefaultBrush}" CornerRadius="8" Padding="16" MaxWidth="1100">
+        <StackPanel Spacing="12">
+          <TextBlock Text="Wrap" FontSize="18" FontWeight="SemiBold" />
+          <Grid ColumnDefinitions="*,380">
+            <Border Grid.Column="0" BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="6" Padding="12">
+              <FloatPanel Row="True" Wrap="Wrap" Spacing="2" MaxWidth="420">
+                <Border Background="#EF5350" CornerRadius="4" Padding="10,6"><TextBlock Text="Tag 1" Foreground="White" /></Border>
+                <Border Background="#AB47BC" CornerRadius="4" Padding="10,6"><TextBlock Text="Tag 2" Foreground="White" /></Border>
+                <Border Background="#42A5F5" CornerRadius="4" Padding="10,6"><TextBlock Text="Tag 3" Foreground="White" /></Border>
+                <Border Background="#66BB6A" CornerRadius="4" Padding="10,6"><TextBlock Text="Tag 4" Foreground="White" /></Border>
+                <Border Background="#FFCA28" CornerRadius="4" Padding="10,6"><TextBlock Text="Tag 5" Foreground="White" /></Border>
+                <Border Background="#8D6E63" CornerRadius="4" Padding="10,6"><TextBlock Text="Tag 6" Foreground="White" /></Border>
+              </FloatPanel>
+            </Border>
+            <Border Grid.Column="1" Margin="12,0,0,0" Background="#1E1E1E" BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="6">
+              <ScrollViewer Padding="12">
+                <TextBlock Text="{Binding WrapExampleXaml}" FontFamily="Consolas,Cascadia Mono,monospace" FontSize="12" Foreground="#D4D4D4" TextWrapping="Wrap" />
+              </ScrollViewer>
+            </Border>
+          </Grid>
+        </StackPanel>
+      </Border>
+
+      <Border Background="{DynamicResource CardBackgroundFillColorDefaultBrush}" CornerRadius="8" Padding="16" MaxWidth="1100">
+        <StackPanel Spacing="12">
+          <TextBlock Text="Responsive breakpoint" FontSize="18" FontWeight="SemiBold" />
+          <Grid ColumnDefinitions="*,380">
+            <Border Grid.Column="0" BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="6" Padding="12">
+              <FloatPanel Row="True" Breakpoint="Md" Spacing="2">
+                <Border Background="#5C6BC0" CornerRadius="4" Padding="12,8"><TextBlock Text="Left" Foreground="White" /></Border>
+                <Border Background="#26A69A" CornerRadius="4" Padding="12,8"><TextBlock Text="Center" Foreground="White" /></Border>
+                <Border Background="#FFA726" CornerRadius="4" Padding="12,8"><TextBlock Text="Right" Foreground="White" /></Border>
+              </FloatPanel>
+            </Border>
+            <Border Grid.Column="1" Margin="12,0,0,0" Background="#1E1E1E" BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="6">
+              <ScrollViewer Padding="12">
+                <TextBlock Text="{Binding BreakpointExampleXaml}" FontFamily="Consolas,Cascadia Mono,monospace" FontSize="12" Foreground="#D4D4D4" TextWrapping="Wrap" />
+              </ScrollViewer>
+            </Border>
+          </Grid>
+        </StackPanel>
+      </Border>
 
     </StackPanel>
   </ScrollViewer>

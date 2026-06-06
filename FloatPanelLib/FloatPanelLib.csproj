@@ -9,10 +9,13 @@
     <PackageId>$(AssemblyName)</PackageId>
     <Title>FloatPanel</Title>
 	  <PackageVersion>2.1.0</PackageVersion>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+    <Description>Flex-style layout panel for Avalonia UI, inspired by MudBlazor MudStack.</Description>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Avalonia" Version="11.0.0" />
+    <PackageReference Include="Avalonia" Version="12.0.0" />
   </ItemGroup>
 
 </Project>

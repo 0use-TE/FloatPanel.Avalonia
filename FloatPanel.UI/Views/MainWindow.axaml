@@ -7,6 +7,10 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="FloatPanel.UI.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
-        Title="FloatPanel">
+        Title="FloatPanel"
+        Width="1100"
+        Height="800"
+        MinWidth="720"
+        MinHeight="500">
         <views:MainView />
 </Window>

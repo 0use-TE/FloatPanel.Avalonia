@@ -1,28 +1,8 @@
-# FloatPanel.Avalonia
+# FloatPanel
 
-A flexible layout panel for Avalonia UI, inspired by MudBlazor's MudStack and MudSpacer components.
+Flex-style layout for Avalonia UI — MudStack-inspired `FloatPanel` and `Spacer`.
 
-## Features
-
-- **FloatPanel** - A versatile layout container with support for:
-  - Horizontal and vertical orientations
-  - Configurable spacing between child elements
-  - Justify content alignment (Start, Center, End, SpaceBetween, SpaceAround, SpaceEvenly)
-  - Cross-axis alignment (Start, Center, End, Stretch)
-  - Automatic wrapping when content overflows
-
-- **Spacer** - A lightweight component that occupies remaining space in a FloatPanel
-
-## Supported Platforms
-
-| Platform | Status |
-|----------|--------|
-| Windows | Supported |
-| macOS | Supported |
-| Linux | Supported |
-| WebAssembly (WASM) | Supported |
-| iOS | Supported |
-| Android | Supported |
+**Documentation:** [GitHub Pages](https://0use-te.github.io/FloatPanel.Avalonia/) · **Live Demo:** [WASM demo](https://0use-te.github.io/FloatPanel.Avalonia/demo/)
 
 ## Demo
 
@@ -30,88 +10,56 @@ A flexible layout panel for Avalonia UI, inspired by MudBlazor's MudStack and Mu
 
 [Watch Video Demo](docs/images/floatpanel-demo.mp4)
 
-## Installation
-
-### NuGet Package
+## Install
 
 ```bash
-dotnet add package FloatPanel
+dotnet add package FloatPanel --version 2.1.0
 ```
 
-## Quick Start
+Requires .NET 10+ and Avalonia 12+.
 
-### Horizontal Layout (Left-Space-Right)
+## Quick start
 
 ```xml
-<FloatPanel Orientation="Horizontal">
+<!-- Vertical stack (default, like MudStack) -->
+<FloatPanel Spacing="3">
+    <TextBlock Text="Item 1"/>
+    <TextBlock Text="Item 2"/>
+</FloatPanel>
+
+<!-- Toolbar with Spacer -->
+<FloatPanel Row="True" Spacing="2">
     <Button Content="Settings"/>
     <Spacer/>
     <Button Content="Apply"/>
 </FloatPanel>
 ```
 
-### Vertical Layout (Top-Space-Bottom)
+## MudStack API parity
 
-```xml
-<FloatPanel Orientation="Vertical">
-    <TextBlock Text="Title"/>
-    <Spacer/>
-    <Button Content="OK"/>
-</FloatPanel>
-```
+| Property | Description |
+|----------|-------------|
+| `Row` | Horizontal layout when `true` |
+| `Spacing` | Gap in 4 px steps (default `3`) |
+| `Justify` | Main-axis distribution |
+| `AlignItems` | Cross-axis alignment |
+| `Wrap` | `NoWrap`, `Wrap`, `WrapReverse` |
+| `Reverse` | Reverse item order |
+| `StretchItems` | Stretch children on main axis |
+| `Breakpoint` | Responsive row/column switch |
+| `Spacer` | Consumes remaining main-axis space |
 
-## API Reference
+## Supported platforms
 
-### FloatPanel Properties
+| Platform | Status |
+|----------|--------|
+| Windows / macOS / Linux | Supported |
+| WebAssembly | Supported |
+| iOS / Android | Supported |
 
-| Property | Type | Default | Description |
-|----------|------|---------|-------------|
-| `Orientation` | `Orientation` | `Horizontal` | Layout direction |
-| `Spacing` | `double` | `8` | Space between children in pixels |
-| `Justify` | `JustifyContent` | `Start` | Main axis alignment |
-| `Align` | `AlignItems` | `Stretch` | Cross axis alignment |
-| `Wrap` | `bool` | `false` | Enable wrapping |
+## Upgrade from v2.0
 
-### JustifyContent Enum
-
-- `Start` - Align to start
-- `Center` - Align to center
-- `End` - Align to end
-- `SpaceBetween` - Equal space between items
-- `SpaceAround` - Equal space around items
-- `SpaceEvenly` - Uniform spacing
-
-### AlignItems Enum
-
-- `Start` - Align to start of cross axis
-- `Center` - Align to center of cross axis
-- `End` - Align to end of cross axis
-- `Stretch` - Stretch to fill cross axis
-
-## Project Structure
-
-```
-FloatPanel.Avalonia/
-├── FloatPanelLib/           # Control library
-│   ├── Controls/
-│   │   ├── FloatPanel.cs    # Main layout panel
-│   │   └── Spacer.cs        # Space-filling component
-│   └── AssemblyInfo.cs      # XML namespace definition
-├── FloatPanel.UI/          # Shared UI project
-│   ├── Views/
-│   │   └── MainView.axaml  # Example usage
-│   ├── ViewModels/          # View models
-│   ├── App.axaml           # Application definition
-│   └── ViewLocator.cs       # View locator
-├── FloatPanel.Desktop/     # Desktop application
-├── FloatPanel.Browser/     # WebAssembly application
-├── docs/                   # Documentation (docfx)
-└── docfx.json              # docfx configuration
-```
-
-## Documentation
-
-Full documentation is available in the docs/ folder or via docfx.
+See [upgrade guide](docs/v2.1/upgrade-from-2.0.md). Key changes: `Orientation` → `Row`, pixel `Spacing` → 4 px increments, `Align` → `AlignItems`.
 
 ## License
 

@@ -2,34 +2,29 @@
 _layout: landing
 ---
 
-# FloatPanel.Avalonia
+# FloatPanel
 
-A flexible layout panel for Avalonia UI, inspired by MudBlazor's MudStack and MudSpacer components.
+Flex-style layout for Avalonia UI — a MudStack-inspired `FloatPanel` and `Spacer` for every platform Avalonia supports.
 
-## Features
+| | Link |
+|---|------|
+| **v2.1 (Current)** | [Documentation](docs/v2.1/introduction.md) |
+| **v2.0 (Legacy)** | [Documentation](docs/v2.0/introduction.md) |
+| **Live Demo** | [Interactive WASM demo](demo/index.md) |
+| **NuGet** | [FloatPanel 2.1.0](https://www.nuget.org/packages/FloatPanel) |
 
-- **FloatPanel** - A versatile layout container with support for:
-  - Horizontal and vertical orientations
-  - Configurable spacing between child elements
-  - Justify content alignment (Start, Center, End, SpaceBetween, SpaceAround, SpaceEvenly)
-  - Cross-axis alignment (Start, Center, End, Stretch)
-  - Automatic wrapping when content overflows
-
-- **Spacer** - A lightweight component that occupies remaining space in a FloatPanel
-
-## Quick Example
+## Quick example
 
 ```xml
-<FloatPanel Orientation="Horizontal">
+<FloatPanel Row="True" Spacing="3">
     <Button Content="Settings"/>
     <Spacer/>
     <Button Content="Apply"/>
 </FloatPanel>
 ```
 
-## Navigation
+## Features
 
-- [Introduction](docs/introduction.md) - Overview and concepts
-- [Getting Started](docs/getting-started.md) - Quick start guide
-- [Troubleshooting](docs/troubleshooting.md) - Common issues and solutions
-- [API Reference](api/) - Detailed API documentation
+- MudStack-compatible properties: `Row`, `Spacing`, `Justify`, `AlignItems`, `Wrap`, `Reverse`, `StretchItems`, `Breakpoint`
+- `Spacer` for toolbar and footer patterns
+- WebAssembly demo and versioned DocFX documentation

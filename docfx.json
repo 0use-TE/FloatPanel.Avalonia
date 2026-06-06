@@ -5,9 +5,7 @@
       "src": [
         {
           "src": "./FloatPanelLib",
-          "files": [
-            "**/*.csproj"
-          ]
+          "files": ["**/*.csproj"]
         }
       ],
       "dest": "api"
@@ -16,31 +14,41 @@
   "build": {
     "content": [
       {
-        "files": [
-          "**/*.{md,yml}"
-        ],
-        "exclude": [
-          "_site/**"
-        ]
+        "files": ["index.md", "toc.yml"]
+      },
+      {
+        "files": ["**/*.{md,yml}"],
+        "src": "docs",
+        "dest": "docs"
+      },
+      {
+        "files": ["**/*.{md,yml}"],
+        "src": "demo",
+        "dest": "demo"
+      },
+      {
+        "files": ["**/*.yml"],
+        "src": "api",
+        "dest": "api"
       }
     ],
     "resource": [
       {
-        "files": [
-          "images/**"
-        ]
+        "files": ["images/**"]
       }
     ],
     "output": "_site",
-    "template": [
-      "default",
-      "modern"
-    ],
+    "template": ["default", "modern"],
     "globalMetadata": {
       "_appName": "FloatPanel",
-      "_appTitle": "FloatPanel",
+      "_appTitle": "FloatPanel Documentation",
       "_enableSearch": true,
-      "pdf": true
+      "pdf": true,
+      "_appFooter": "© 2026 FloatPanel.Avalonia",
+      "_gitContribute": {
+        "repo": "https://github.com/0use-TE/FloatPanel.Avalonia",
+        "branch": "main"
+      }
     }
   }
 }
