@@ -45,6 +45,23 @@ jobs:
           cp -r _site/* dist/
           mkdir -p dist/demo
           cp -r FloatPanel.Browser/bin/Release/net10.0-browser/publish/wwwroot/* dist/demo/
+          sed -i 's|<head>|<head>\n    <base href="/FloatPanel.Avalonia/demo/" />|' dist/demo/index.html
+          for page in introduction getting-started troubleshooting; do
+            cat > "dist/docs/${page}.html" << EOF
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="utf-8">
+            <meta http-equiv="refresh" content="0; url=v2.1/${page}.html">
+            <link rel="canonical" href="v2.1/${page}.html">
+            <title>Redirecting…</title>
+          </head>
+          <body>
+            <p>Documentation moved to <a href="v2.1/${page}.html">v2.1/${page}.html</a>.</p>
+          </body>
+          </html>
+          EOF
+          done
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

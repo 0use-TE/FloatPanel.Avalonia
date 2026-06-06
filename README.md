@@ -2,7 +2,7 @@
 
 Flex-style layout for Avalonia UI — MudStack-inspired `FloatPanel` and `Spacer`.
 
-**Documentation:** [GitHub Pages](https://0use-te.github.io/FloatPanel.Avalonia/) · **Live Demo:** [WASM demo](https://0use-te.github.io/FloatPanel.Avalonia/demo/)
+**Documentation:** [0use.net/FloatPanel.Avalonia](https://0use.net/FloatPanel.Avalonia/) · **Live Demo:** [WASM demo](https://0use.net/FloatPanel.Avalonia/demo/)
 
 ## Demo
 

@@ -40,4 +40,4 @@ Like MudStack, **FloatPanel stacks vertically by default** (`Row="False"`). Set 
 
 ## Live demo
 
-Try the interactive demo on the [Live Demo](../../demo/index.md) page.
+Try the interactive demo at [0use.net/FloatPanel.Avalonia/demo/](https://0use.net/FloatPanel.Avalonia/demo/).

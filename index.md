@@ -10,7 +10,7 @@ Flex-style layout for Avalonia UI — a MudStack-inspired `FloatPanel` and `Spac
 |---|------|
 | **v2.1 (Current)** | [Documentation](docs/v2.1/introduction.md) |
 | **v2.0 (Legacy)** | [Documentation](docs/v2.0/introduction.md) |
-| **Live Demo** | [Interactive WASM demo](demo/index.md) |
+| **Live Demo** | [Interactive WASM demo](https://0use.net/FloatPanel.Avalonia/demo/) |
 | **NuGet** | [FloatPanel 2.1.0](https://www.nuget.org/packages/FloatPanel) |
 
 ## Quick example
