@@ -8,19 +8,19 @@ namespace FloatPanel.ViewModels;
 public partial class MainViewModel : ViewModelBase
 {
     [ObservableProperty]
-    private bool _row;
+    private bool _row = true;
 
     [ObservableProperty]
     private bool _reverse;
 
     [ObservableProperty]
-    private int _spacing = 3;
+    private int _spacing = 2;
 
     [ObservableProperty]
     private Justify _justify = Justify.FlexStart;
 
     [ObservableProperty]
-    private AlignItems _alignItems = AlignItems.Stretch;
+    private AlignItems _alignItems = AlignItems.Center;
 
     [ObservableProperty]
     private Wrap _wrap = Wrap.NoWrap;
@@ -33,7 +33,7 @@ public partial class MainViewModel : ViewModelBase
 
     [ObservableProperty]
     private string _playgroundXaml = DemoXamlBuilder.BuildPlayground(
-        false, false, 3, Justify.FlexStart, AlignItems.Stretch, Wrap.NoWrap, StretchItems.None, Breakpoint.None);
+        true, false, 2, Justify.FlexStart, AlignItems.Center, Wrap.NoWrap, StretchItems.None, Breakpoint.None);
 
     [ObservableProperty]
     private bool _isPlaygroundCodeOpen = true;
@@ -47,8 +47,6 @@ public partial class MainViewModel : ViewModelBase
     public Array StretchItemsValues { get; } = Enum.GetValues<StretchItems>();
 
     public Array BreakpointValues { get; } = Enum.GetValues<Breakpoint>();
-
-    public string SpacerExampleXaml => DemoXamlBuilder.SpacerExample;
 
     public string VerticalExampleXaml => DemoXamlBuilder.VerticalExample;
 

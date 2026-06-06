@@ -12,9 +12,9 @@
   <ScrollViewer>
     <StackPanel Margin="24" Spacing="24">
 
-      <StackPanel Spacing="6" MaxWidth="1100">
+      <StackPanel Spacing="6">
         <TextBlock Text="FloatPanel Live Demo" FontSize="28" FontWeight="Bold" />
-        <TextBlock Text="Left: live preview. Right: XAML source (plain text)."
+        <TextBlock Text="Default pattern: Spacer pushes content to both edges — the most common toolbar layout."
                    Opacity="0.75"
                    TextWrapping="Wrap" />
       </StackPanel>
@@ -22,7 +22,7 @@
       <Border Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
               CornerRadius="8"
               Padding="16"
-              MaxWidth="1100">
+              MaxWidth="1200">
         <StackPanel Spacing="12">
           <TextBlock Text="Playground" FontSize="18" FontWeight="SemiBold" />
 
@@ -49,17 +49,20 @@
       <Border Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
               CornerRadius="8"
               Padding="16"
-              MaxWidth="1100">
+              MaxWidth="1200">
         <StackPanel Spacing="12">
-          <TextBlock Text="Preview" FontSize="18" FontWeight="SemiBold" />
+          <TextBlock Text="Preview — Spacer toolbar" FontSize="18" FontWeight="SemiBold" />
+          <TextBlock Text="One item on the left, two on the right; Spacer fills the middle."
+                     Opacity="0.75"
+                     TextWrapping="Wrap" />
 
-          <Grid ColumnDefinitions="*,Auto">
+          <Grid ColumnDefinitions="*,480">
             <Border Grid.Column="0"
                     BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}"
                     BorderThickness="1"
                     CornerRadius="6"
                     Padding="12"
-                    MinHeight="160">
+                    MinHeight="56">
               <FloatPanel Row="{Binding Row}"
                           Reverse="{Binding Reverse}"
                           Spacing="{Binding Spacing}"
@@ -68,20 +71,15 @@
                           Wrap="{Binding Wrap}"
                           StretchItems="{Binding StretchItems}"
                           Breakpoint="{Binding Breakpoint}">
-                <Border Background="#5C6BC0" CornerRadius="4" Padding="12,8">
-                  <TextBlock Text="Item 1" Foreground="White" />
-                </Border>
-                <Border Background="#26A69A" CornerRadius="4" Padding="12,8">
-                  <TextBlock Text="Item 2" Foreground="White" />
-                </Border>
-                <Border Background="#FFA726" CornerRadius="4" Padding="12,8">
-                  <TextBlock Text="Item 3" Foreground="White" />
-                </Border>
+                <Button Content="Settings" />
+                <Spacer />
+                <Button Content="Cancel" />
+                <Button Content="Apply" Classes="accent" />
               </FloatPanel>
             </Border>
 
             <Border Grid.Column="1"
-                    Width="380"
+                    MinWidth="480"
                     Margin="12,0,0,0"
                     Background="#1E1E1E"
                     BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}"
@@ -96,12 +94,15 @@
                             Content="Hide" Command="{Binding HidePlaygroundCodeCommand}" />
                   </Grid>
                 </Border>
-                <ScrollViewer Grid.Row="1" Padding="12">
+                <ScrollViewer Grid.Row="1"
+                              Padding="12"
+                              HorizontalScrollBarVisibility="Auto"
+                              VerticalScrollBarVisibility="Auto">
                   <TextBlock Text="{Binding PlaygroundXaml}"
                              FontFamily="Consolas,Cascadia Mono,monospace"
                              FontSize="12"
                              Foreground="#D4D4D4"
-                             TextWrapping="Wrap" />
+                             TextWrapping="NoWrap" />
                 </ScrollViewer>
               </Grid>
             </Border>
@@ -117,30 +118,10 @@
         </StackPanel>
       </Border>
 
-      <Border Background="{DynamicResource CardBackgroundFillColorDefaultBrush}" CornerRadius="8" Padding="16" MaxWidth="1100">
+      <Border Background="{DynamicResource CardBackgroundFillColorDefaultBrush}" CornerRadius="8" Padding="16" MaxWidth="1200">
         <StackPanel Spacing="12">
-          <TextBlock Text="Spacer (toolbar pattern)" FontSize="18" FontWeight="SemiBold" />
-          <Grid ColumnDefinitions="*,380">
-            <Border Grid.Column="0" BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="6" Padding="12">
-              <FloatPanel Row="True" Spacing="2" AlignItems="Center">
-                <Button Content="Settings" />
-                <Spacer />
-                <Button Content="Apply" Classes="accent" />
-              </FloatPanel>
-            </Border>
-            <Border Grid.Column="1" Margin="12,0,0,0" Background="#1E1E1E" BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="6">
-              <ScrollViewer Padding="12">
-                <TextBlock Text="{Binding SpacerExampleXaml}" FontFamily="Consolas,Cascadia Mono,monospace" FontSize="12" Foreground="#D4D4D4" TextWrapping="Wrap" />
-              </ScrollViewer>
-            </Border>
-          </Grid>
-        </StackPanel>
-      </Border>
-
-      <Border Background="{DynamicResource CardBackgroundFillColorDefaultBrush}" CornerRadius="8" Padding="16" MaxWidth="1100">
-        <StackPanel Spacing="12">
-          <TextBlock Text="Vertical stack (default)" FontSize="18" FontWeight="SemiBold" />
-          <Grid ColumnDefinitions="*,380">
+          <TextBlock Text="Vertical stack" FontSize="18" FontWeight="SemiBold" />
+          <Grid ColumnDefinitions="*,480">
             <Border Grid.Column="0" BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="6" Padding="12" MinHeight="180">
               <FloatPanel Spacing="2" Width="220">
                 <TextBlock Text="Title" FontWeight="SemiBold" />
@@ -149,19 +130,19 @@
                 <Button Content="OK" HorizontalAlignment="Stretch" />
               </FloatPanel>
             </Border>
-            <Border Grid.Column="1" Margin="12,0,0,0" Background="#1E1E1E" BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="6">
-              <ScrollViewer Padding="12">
-                <TextBlock Text="{Binding VerticalExampleXaml}" FontFamily="Consolas,Cascadia Mono,monospace" FontSize="12" Foreground="#D4D4D4" TextWrapping="Wrap" />
+            <Border Grid.Column="1" MinWidth="480" Margin="12,0,0,0" Background="#1E1E1E" BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="6">
+              <ScrollViewer Padding="12" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <TextBlock Text="{Binding VerticalExampleXaml}" FontFamily="Consolas,Cascadia Mono,monospace" FontSize="12" Foreground="#D4D4D4" TextWrapping="NoWrap" />
               </ScrollViewer>
             </Border>
           </Grid>
         </StackPanel>
       </Border>
 
-      <Border Background="{DynamicResource CardBackgroundFillColorDefaultBrush}" CornerRadius="8" Padding="16" MaxWidth="1100">
+      <Border Background="{DynamicResource CardBackgroundFillColorDefaultBrush}" CornerRadius="8" Padding="16" MaxWidth="1200">
         <StackPanel Spacing="12">
           <TextBlock Text="Wrap" FontSize="18" FontWeight="SemiBold" />
-          <Grid ColumnDefinitions="*,380">
+          <Grid ColumnDefinitions="*,480">
             <Border Grid.Column="0" BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="6" Padding="12">
               <FloatPanel Row="True" Wrap="Wrap" Spacing="2" MaxWidth="420">
                 <Border Background="#EF5350" CornerRadius="4" Padding="10,6"><TextBlock Text="Tag 1" Foreground="White" /></Border>
@@ -172,19 +153,19 @@
                 <Border Background="#8D6E63" CornerRadius="4" Padding="10,6"><TextBlock Text="Tag 6" Foreground="White" /></Border>
               </FloatPanel>
             </Border>
-            <Border Grid.Column="1" Margin="12,0,0,0" Background="#1E1E1E" BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="6">
-              <ScrollViewer Padding="12">
-                <TextBlock Text="{Binding WrapExampleXaml}" FontFamily="Consolas,Cascadia Mono,monospace" FontSize="12" Foreground="#D4D4D4" TextWrapping="Wrap" />
+            <Border Grid.Column="1" MinWidth="480" Margin="12,0,0,0" Background="#1E1E1E" BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="6">
+              <ScrollViewer Padding="12" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <TextBlock Text="{Binding WrapExampleXaml}" FontFamily="Consolas,Cascadia Mono,monospace" FontSize="12" Foreground="#D4D4D4" TextWrapping="NoWrap" />
               </ScrollViewer>
             </Border>
           </Grid>
         </StackPanel>
       </Border>
 
-      <Border Background="{DynamicResource CardBackgroundFillColorDefaultBrush}" CornerRadius="8" Padding="16" MaxWidth="1100">
+      <Border Background="{DynamicResource CardBackgroundFillColorDefaultBrush}" CornerRadius="8" Padding="16" MaxWidth="1200">
         <StackPanel Spacing="12">
           <TextBlock Text="Responsive breakpoint" FontSize="18" FontWeight="SemiBold" />
-          <Grid ColumnDefinitions="*,380">
+          <Grid ColumnDefinitions="*,480">
             <Border Grid.Column="0" BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="6" Padding="12">
               <FloatPanel Row="True" Breakpoint="Md" Spacing="2">
                 <Border Background="#5C6BC0" CornerRadius="4" Padding="12,8"><TextBlock Text="Left" Foreground="White" /></Border>
@@ -192,9 +173,9 @@
                 <Border Background="#FFA726" CornerRadius="4" Padding="12,8"><TextBlock Text="Right" Foreground="White" /></Border>
               </FloatPanel>
             </Border>
-            <Border Grid.Column="1" Margin="12,0,0,0" Background="#1E1E1E" BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="6">
-              <ScrollViewer Padding="12">
-                <TextBlock Text="{Binding BreakpointExampleXaml}" FontFamily="Consolas,Cascadia Mono,monospace" FontSize="12" Foreground="#D4D4D4" TextWrapping="Wrap" />
+            <Border Grid.Column="1" MinWidth="480" Margin="12,0,0,0" Background="#1E1E1E" BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="6">
+              <ScrollViewer Padding="12" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <TextBlock Text="{Binding BreakpointExampleXaml}" FontFamily="Consolas,Cascadia Mono,monospace" FontSize="12" Foreground="#D4D4D4" TextWrapping="NoWrap" />
               </ScrollViewer>
             </Border>
           </Grid>

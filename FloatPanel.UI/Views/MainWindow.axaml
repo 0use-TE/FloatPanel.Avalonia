@@ -8,9 +8,9 @@
         x:Class="FloatPanel.UI.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
         Title="FloatPanel"
-        Width="1100"
+        Width="1280"
         Height="800"
-        MinWidth="720"
+        MinWidth="960"
         MinHeight="500">
         <views:MainView />
 </Window>
