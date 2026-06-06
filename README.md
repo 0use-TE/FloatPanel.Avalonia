@@ -2,13 +2,15 @@
 
 Flex-style layout for Avalonia UI — MudStack-inspired `FloatPanel` and `Spacer`.
 
-**Documentation:** [0use.net/FloatPanel.Avalonia](https://0use.net/FloatPanel.Avalonia/) · **Live Demo:** [WASM demo](https://0use.net/FloatPanel.Avalonia/demo/)
+## Try it in your browser
 
-## Demo
+**[Open Live Demo →](https://0use.net/FloatPanel.Avalonia/demo/)**
+
+Interactive playground: tweak `Row`, `Spacing`, `Justify`, and more — preview updates instantly with matching XAML on the side. No install required.
 
 ![FloatPanel Demo](docs/images/floatpanel-demo.png)
 
-[Watch Video Demo](docs/images/floatpanel-demo.mp4)
+**Documentation:** [0use.net/FloatPanel.Avalonia](https://0use.net/FloatPanel.Avalonia/)
 
 ## Install
 
