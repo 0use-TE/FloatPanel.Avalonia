@@ -4,7 +4,7 @@
 		<OutputType>Exe</OutputType>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<Nullable>enable</Nullable>
-		<CodeTrim>true</CodeTrim>
+		<PublishTrimmed>false</PublishTrimmed>
 		<WasmEnableThreads>false</WasmEnableThreads>
 	</PropertyGroup>
 
