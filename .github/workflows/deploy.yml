@@ -48,7 +48,11 @@ jobs:
           cp -r _site/* dist/
           mkdir -p dist/demo
           cp -r FloatPanel.Browser/bin/Release/net10.0-browser/publish/wwwroot/* dist/demo/
-          sed -i 's|<head>|<head>\n    <base href="/FloatPanel.Avalonia/demo/" />|' dist/demo/index.html
+          BUILD_ID="${GITHUB_SHA::7}"
+          sed -i 's|<head>|<head>\n    <base href="/FloatPanel.Avalonia/demo/" />\n    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />\n    <meta http-equiv="Pragma" content="no-cache" />\n    <meta http-equiv="Expires" content="0" />|' dist/demo/index.html
+          sed -i "s|src=\"./main.js\"|src=\"./main.js?v=${BUILD_ID}\"|" dist/demo/index.html
+          sed -i "s|from './_framework/dotnet.js'|from './_framework/dotnet.js?v=${BUILD_ID}'|" dist/demo/main.js
+          touch dist/.nojekyll
           for page in introduction getting-started troubleshooting; do
             cat > "dist/docs/${page}.html" << EOF
           <!DOCTYPE html>
